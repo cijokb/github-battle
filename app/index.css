@@ -231,3 +231,12 @@ body {
   .player-info .link{
     margin-left: 10px;
   }
+  .error{
+    color: #ff1616;
+    font-size: 20px;
+    margin: 50px 0;
+  }
+
+  .btn-space {
+    margin: 40px auto;
+  }
