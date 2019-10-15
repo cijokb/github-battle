@@ -112,10 +112,16 @@ export default class Battle extends Component {
       playerTwo: null
     };
     this.handleChange = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
   handleSubmit(id, player) {
     this.setState({
       [id]: player
+    });
+  }
+  handleReset(id) {
+    this.setState({
+      [id]: null
     });
   }
   render() {
@@ -135,7 +141,7 @@ export default class Battle extends Component {
               <PlayerPreview
                 label="Player One"
                 username={playerOne}
-                onReset={() => ({})}
+                onReset={() => this.handleReset("playerOne")}
               />
             )}
             {playerTwo === null ? (
@@ -147,7 +153,7 @@ export default class Battle extends Component {
               <PlayerPreview
                 label="Player Two"
                 username={playerTwo}
-                onReset={() => ({})}
+                onReset={() => this.handleReset("playerTwo")}
               />
             )}
           </div>
