@@ -11,7 +11,7 @@ const Instructions = () => {
   return (
     <div className="instructions-container">
       <h1 className="center-text header-lg">Instructions</h1>
-      <ol className="coantiner-sm grid center-text battle-instrucitons">
+      <ol className="container-sm grid center-text battle-instructions">
         <li>
           <h3 className="header-sm">Enter two Github users</h3>
           <FaUserFriends
