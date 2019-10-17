@@ -2,6 +2,7 @@ import React, { Component,Fragment } from "react";
 import { battle } from "../utils/api";
 import PropTypes from "prop-types";
 import Card from "./Card";
+import Loading from './Loading';
 import {
   FaCompass,
   FaBriefcase,
@@ -75,7 +76,7 @@ export default class Results extends Component {
   render() {
     const { winner, loser, loading, error } = this.state;
     if (loading) {
-      return <p>loading.....</p>;
+      return <Loading/>;
     }
     if (error) {
       return <p className="center-text error">{error}</p>;

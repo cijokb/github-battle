@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Card from "./Card";
+import Loading from './Loading';
 import { fetchPopularRepos } from "../utils/api";
 import {
   FaUser,
@@ -128,7 +129,7 @@ export class Popular extends Component {
           selectedLanguage={selectedLanguage}
           updateLanguage={this.updateLanguage}
         />
-        {this.isLoading() && <p>Loading ...</p>}
+        {this.isLoading() && <Loading text="Fetching Repos"/>}
         {error && <p className="center-text error">{error}</p>}
         {repos[selectedLanguage] && (
           <ReposGrid repos={repos[selectedLanguage]} />
