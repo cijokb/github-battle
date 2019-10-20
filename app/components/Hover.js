@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 
 export default class Hover extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hovering: false
-    };
-    this.mouseOver = this.mouseOver.bind(this);
-    this.mouseOut = this.mouseOut.bind(this);
-  }
-
-  mouseOut() {
+  state = {
+    hovering: false
+  };
+  mouseOut = () => {
     this.setState({ hovering: false });
-  }
+  };
 
-  mouseOver() {
+  mouseOver = () => {
     this.setState({ hovering: true });
-  }
+  };
 
   render() {
     const { hovering } = this.state;

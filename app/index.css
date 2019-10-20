@@ -44,6 +44,7 @@ li {
   font-weight: bold;
   text-decoration: none;
   color: inherit;
+  margin-right: 10px;
 }
 
 .grid {
@@ -55,6 +56,9 @@ li {
   justify-content: space-around;
 }
 
+.space-between {
+  justify-content: space-between;
+}
 .header-lg {
   font-size: 35px;
   font-weight: 300;
@@ -264,3 +268,4 @@ li {
   background: #292929;
   color: #4a4a4a;
 }
+

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Card from "./Card";
-import Loading from './Loading';
+import Loading from "./Loading";
 import { fetchPopularRepos } from "../utils/api";
 import {
   FaUser,
@@ -55,24 +55,24 @@ const ReposGrid = ({ repos }) => {
               href={html_url}
               name={login}
             >
-            <ul className="card-list">
-              <li>
-                <FaUser color="rgb(255,191,116)" size={22} />
-                <a href={`https://github.com/${login}`}>{login}</a>
-              </li>
-              <li>
-                <FaStar color="rgb(255,214,0)" size={22} />
-                {stargazers_count.toLocaleString()} stars
-              </li>
-              <li>
-                <FaCodeBranch color="rgb(129,195,244)" size={22} />
-                {forks.toLocaleString()} forks
-              </li>
-              <li>
-                <FaExclamationTriangle color="rgb(241,138,147)" size={22} />
-                {open_issues.toLocaleString()} open open issues
-              </li>
-            </ul>
+              <ul className="card-list">
+                <li>
+                  <FaUser color="rgb(255,191,116)" size={22} />
+                  <a href={`https://github.com/${login}`}>{login}</a>
+                </li>
+                <li>
+                  <FaStar color="rgb(255,214,0)" size={22} />
+                  {stargazers_count.toLocaleString()} stars
+                </li>
+                <li>
+                  <FaCodeBranch color="rgb(129,195,244)" size={22} />
+                  {forks.toLocaleString()} forks
+                </li>
+                <li>
+                  <FaExclamationTriangle color="rgb(241,138,147)" size={22} />
+                  {open_issues.toLocaleString()} open open issues
+                </li>
+              </ul>
             </Card>
           </li>
         );
@@ -86,22 +86,18 @@ ReposGrid.propTypes = {
 };
 
 export class Popular extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLanguage: "All",
-      repos: {},
-      error: null
-    };
-    this.updateLanguage = this.updateLanguage.bind(this);
-  }
+  state = {
+    selectedLanguage: "All",
+    repos: {},
+    error: null
+  };
 
-  isLoading() {
+  isLoading = () => {
     const { repos, selectedLanguage, error } = this.state;
     return error === null && !repos[selectedLanguage];
-  }
+  };
 
-  updateLanguage(selectedLanguage) {
+  updateLanguage = selectedLanguage => {
     const { repos } = this.state;
     this.setState({ selectedLanguage, error: null });
 
@@ -117,7 +113,7 @@ export class Popular extends Component {
           this.setState({ error: "There was an error fetching repos" });
         });
     }
-  }
+  };
   componentDidMount() {
     this.updateLanguage(this.state.selectedLanguage);
   }
@@ -129,7 +125,7 @@ export class Popular extends Component {
           selectedLanguage={selectedLanguage}
           updateLanguage={this.updateLanguage}
         />
-        {this.isLoading() && <Loading text="Fetching Repos"/>}
+        {this.isLoading() && <Loading text="Fetching Repos" />}
         {error && <p className="center-text error">{error}</p>}
         {repos[selectedLanguage] && (
           <ReposGrid repos={repos[selectedLanguage]} />

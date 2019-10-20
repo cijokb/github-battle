@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import { ThemeConsumer } from "../contexts/theme";
 
 import {
@@ -69,23 +70,17 @@ const PlayerPreview = ({ label, username, onReset }) => (
 );
 
 class PlayerInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: ""
-    };
+  state = {
+    username: ""
+  };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.username);
-  }
-  handleChange(e) {
+  };
+  handleChange = e => {
     this.setState({ username: e.target.value });
-  }
+  };
   render() {
     return (
       <ThemeConsumer>
@@ -120,39 +115,23 @@ class PlayerInput extends Component {
 }
 
 export default class Battle extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playerOne: null,
-      playerTwo: null,
-      battle: false
-    };
-    this.handleChange = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
-  handleSubmit(id, player) {
+  state = {
+    playerOne: null,
+    playerTwo: null
+  };
+
+  handleSubmit = (id, player) => {
     this.setState({
       [id]: player
     });
-  }
-  handleReset(id) {
+  };
+  handleReset = id => {
     this.setState({
       [id]: null
     });
-  }
+  };
   render() {
     const { playerOne, playerTwo, battle } = this.state;
-    if (battle) {
-      return (
-        <Results
-          playerOne={playerOne}
-          playerTwo={playerTwo}
-          onReset={() =>
-            this.setState({ playerOne: null, playerTwo: null, battle: false })
-          }
-        />
-      );
-    }
     return (
       <Fragment>
         <Instructions />
@@ -185,12 +164,15 @@ export default class Battle extends Component {
             )}
           </div>
           {playerOne && playerTwo && (
-            <button
+            <Link
               className="btn dark-btn btn-space"
-              onClick={() => this.setState({ battle: true })}
+              to={{
+                pathname: "/battle/results",
+                search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+              }}
             >
               Battle
-            </button>
+            </Link>
           )}
         </div>
       </Fragment>

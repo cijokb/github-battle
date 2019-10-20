@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 import Loading from "./Loading";
 import Tooltip from "./Tooltip";
+import { Link } from "react-router-dom";
+import queryString from "query-string";
 
 import {
   FaCompass,
@@ -54,18 +56,17 @@ ProfileList.propTypes = {
 };
 
 export default class Results extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      winner: null,
-      loser: null,
-      loading: true,
-      error: null
-    };
-  }
+  state = {
+    winner: null,
+    loser: null,
+    loading: true,
+    error: null
+  };
 
   componentDidMount() {
-    const { playerOne, playerTwo } = this.props;
+    const { playerOne, playerTwo } = queryString.parse(
+      this.props.location.search
+    );
     battle([playerOne, playerTwo])
       .then(res =>
         this.setState({
@@ -109,16 +110,10 @@ export default class Results extends Component {
             <ProfileList profile={loser.profile} />
           </Card>
         </div>
-        <button className="btn dark-btn btn-space" onClick={this.props.onReset}>
+        <Link className="btn dark-btn btn-space" to="/battle">
           Reset
-        </button>
+        </Link>
       </Fragment>
     );
   }
 }
-
-Results.propTypes = {
-  playerTwo: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired
-};
