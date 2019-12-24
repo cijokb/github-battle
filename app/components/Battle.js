@@ -13,7 +13,7 @@ import Results from "./Results";
 const Instructions = () => {
   return (
     <ThemeConsumer>
-      {({ theme }) => (
+      {(theme) => (
         <div className="instructions-container">
           <h1 className="center-text header-lg">Instructions</h1>
           <ol className="container-sm grid center-text battle-instructions">
@@ -46,7 +46,7 @@ const Instructions = () => {
 
 const PlayerPreview = ({ label, username, onReset }) => (
   <ThemeConsumer>
-    {({ theme }) => (
+    {(theme) => (
       <div className="column player">
         <h3>{label}</h3>
         <div className={`row bg-${theme}`}>
@@ -84,7 +84,7 @@ class PlayerInput extends Component {
   render() {
     return (
       <ThemeConsumer>
-        {({ theme }) => (
+        {(theme) => (
           <form className="column player" onSubmit={this.handleSubmit}>
             <label htmlFor="username" className="player-label">
               {this.props.label}
@@ -144,24 +144,24 @@ export default class Battle extends Component {
                 label="Player One"
               />
             ) : (
-              <PlayerPreview
-                label="Player One"
-                username={playerOne}
-                onReset={() => this.handleReset("playerOne")}
-              />
-            )}
+                <PlayerPreview
+                  label="Player One"
+                  username={playerOne}
+                  onReset={() => this.handleReset("playerOne")}
+                />
+              )}
             {playerTwo === null ? (
               <PlayerInput
                 onSubmit={player => this.handleSubmit("playerTwo", player)}
                 label="Player Two"
               />
             ) : (
-              <PlayerPreview
-                label="Player Two"
-                username={playerTwo}
-                onReset={() => this.handleReset("playerTwo")}
-              />
-            )}
+                <PlayerPreview
+                  label="Player Two"
+                  username={playerTwo}
+                  onReset={() => this.handleReset("playerTwo")}
+                />
+              )}
           </div>
           {playerOne && playerTwo && (
             <Link
