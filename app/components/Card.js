@@ -1,5 +1,5 @@
-import React from "react";
-import { ThemeConsumer } from "../contexts/theme";
+import React, { useContext } from "react";
+import ThemeContext from "../contexts/theme";
 import PropTypes from "prop-types";
 
 export default function Card({
@@ -10,22 +10,19 @@ export default function Card({
   name,
   children
 }) {
+  const theme = useContext(ThemeContext);
   return (
-    <ThemeConsumer>
-      {(theme) => (
-        <div className={`card bg-${theme}`}>
-          <h4 className="header-lg center-text">{header}</h4>
-          <img className="avatar" src={avatar} alt={`Avatar for ${name}`} />
-          {subheader && <h4 className="center-text">Score: {subheader}</h4>}
-          <h2 className="center-text">
-            <a className="link" href={href}>
-              {name}
-            </a>
-          </h2>
-          {children}
-        </div>
-      )}
-    </ThemeConsumer>
+    <div className={`card bg-${theme}`}>
+      <h4 className="header-lg center-text">{header}</h4>
+      <img className="avatar" src={avatar} alt={`Avatar for ${name}`} />
+      {subheader && <h4 className="center-text">Score: {subheader}</h4>}
+      <h2 className="center-text">
+        <a className="link" href={href}>
+          {name}
+        </a>
+      </h2>
+      {children}
+    </div>
   );
 }
 

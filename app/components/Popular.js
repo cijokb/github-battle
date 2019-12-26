@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 import Loading from "./Loading";
 import { fetchPopularRepos } from "../utils/api";
+import Tooltip from "./Tooltip";
 import {
   FaUser,
   FaStar,
@@ -56,10 +57,12 @@ const ReposGrid = ({ repos }) => {
               name={login}
             >
               <ul className="card-list">
-                <li>
-                  <FaUser color="rgb(255,191,116)" size={22} />
-                  <a href={`https://github.com/${login}`}>{login}</a>
-                </li>
+                <Tooltip text="Github username">
+                  <FaUser color='rgb(255, 191, 116)' size={22} />
+                  <a href={`https://github.com/${login}`}>
+                    {login}
+                  </a>
+                </Tooltip>
                 <li>
                   <FaStar color="rgb(255,214,0)" size={22} />
                   {stargazers_count.toLocaleString()} stars

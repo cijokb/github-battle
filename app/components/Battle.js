@@ -1,6 +1,6 @@
 import React, { Component, Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import ThemeContext, { ThemeConsumer } from "../contexts/theme";
+import ThemeContext from "../contexts/theme";
 
 import {
   FaUserFriends,
